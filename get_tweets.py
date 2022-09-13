@@ -1,8 +1,7 @@
 import tweepy
 import datetime 
 
-# Fill the X's with the credentials obtained by
-# following the above mentioned procedure.
+# Keys 
 consumer_key = "5gmn7aKPH2Auig4IzlfbJFiAL"
 consumer_secret = "42eLxX1cJHMiphKJ85UH8RtSm4TWpQeVBmPuDnGztQozeprwqV"
 access_key = "3487626854-WsHEpiyqitzDw3urb2a7jZ8eBCBXq6k538EaOHu"
@@ -44,6 +43,6 @@ if __name__ == '__main__':
 
  # Here goes the twitter handle for the user
  # whose tweets are to be extracted.
- get_tweets("espn")
+ get_tweets("@espn")
 
 

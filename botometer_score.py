@@ -1,4 +1,5 @@
 import botometer
+import pandas as pd
 
 
 rapidapi_key = "6c37f64ed3msh1133a7a0288b8efp14749bjsn53713384b4ff"
@@ -15,7 +16,10 @@ bom = botometer.Botometer(wait_on_ratelimit=True,
 
 result = bom.check_account('@espn')
 
-print(result)
+
+df = pd.DataFrame(result, columns = [ 'display_scores'
+                                           ])
+print(df)
 
 
 
