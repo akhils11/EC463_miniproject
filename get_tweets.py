@@ -43,6 +43,7 @@ if __name__ == '__main__':
 
  # Here goes the twitter handle for the user
  # whose tweets are to be extracted.
- get_tweets("@espn")
+ val = input("Enter the username: ")
+ get_tweets(val)
 
 
