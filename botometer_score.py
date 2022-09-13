@@ -1,4 +1,3 @@
-import tweepy
 import botometer
 
 
@@ -14,6 +13,9 @@ twitter_app_auth = {
 bom = botometer.Botometer(wait_on_ratelimit=True,
                           rapidapi_key=rapidapi_key, **twitter_app_auth)
 
-result = bom.check_account('@akhil_sehgal1')
+result = bom.check_account('@espn')
 
 print(result)
+
+
+
