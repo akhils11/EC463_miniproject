@@ -43,7 +43,10 @@ if __name__ == '__main__':
 
  # Here goes the twitter handle for the user
  # whose tweets are to be extracted.
- val = input("Enter the username: ")
- get_tweets(val)
+ while True:
+    val = input("Enter the username: ")
+    store_usernames = []
+    tmp.append(val)
+    get_tweets(val)
 
 

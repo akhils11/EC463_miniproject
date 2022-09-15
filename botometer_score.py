@@ -16,10 +16,8 @@ bom = botometer.Botometer(wait_on_ratelimit=True,
 
 val = input("Enter Twitter handle: ")
 result = bom.check_account(val)
-try:
-   print(results)
-except:
-   print("Not a valid twitter account")
+botscore = result['display_scores']['english']['overall']
+print(botscore)
 
 #df = pd.DataFrame(result, columns = [ 'display_scores'
  #                                          ])
