@@ -37,7 +37,7 @@ def get_tweets(username):
   # Printing the tweets
   print(tmp)
 
-
+#
 # Driver code
 if __name__ == '__main__':
 
