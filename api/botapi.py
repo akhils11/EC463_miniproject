@@ -1,5 +1,4 @@
-from os import lseek
-from api_keys import *
+from api.api_keys import *
 import botometer
 
 rapidapi_key = rapid_api_key
@@ -10,17 +9,16 @@ twitter_app_auth = {
 "access_token_secret" : access_token_secret,
 }
 
-bom = botometer.Botometer(wait_on_ratelimit=True,
+class Bot:
+    def __init__(self):
+        self.bom = botometer.Botometer(wait_on_ratelimit=True,
                           rapidapi_key=rapidapi_key,
                           **twitter_app_auth)
 
-# Check a single account by screen name
-result = bom.check_account('@clayadavis')
+    def isBot(self, user_id):
+        if user_id[0] != '@':
+            user_id = '@' + user_id
+        result = self.bom.check_account(user_id)
 
-# Check a single account by id
-result = bom.check_account(1548959833)
+        return result['cap']['universal']
 
-# Check a sequence of accounts
-accounts = ['@clayadavis', '@onurvarol', '@jabawack']
-for screen_name, result in bom.check_accounts_in(accounts):
-    print(screen_name, result)
