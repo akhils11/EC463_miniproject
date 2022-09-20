@@ -13,12 +13,13 @@ class Bot:
     def __init__(self):
         self.bom = botometer.Botometer(wait_on_ratelimit=True, rapidapi_key=rapidapi_key, **twitter_app_auth)
         self.result = {}
-    '''
-    Returns data from  
-    @param  {String}        userid:     The user's twitter name
-    @return {dict}          self.tweets 
-    ''' 
+
     def isBot(self, user_id):
+        '''
+        Returns data from  
+        @param  {String}        userid:     The user's twitter name
+        @return {dict}          self.tweets 
+        ''' 
         self.result = self.bom.check_account(user_id)
         return self.result
 
