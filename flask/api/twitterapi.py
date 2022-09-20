@@ -3,14 +3,15 @@ from api.api_keys import *
 
 
 class Tweepy:
-    '''
-    Initializes the tweepy response containing data from last N tweets from User userid
-    @param  {String}        screen_name :   The user's twitter name
-    @param  {Int}           n           :   Max number of tweets to return
-    @param  {Bool}          retweets    :   Include retweets
-    @param  {Bool}          replies     :   Exclude replies 
-    ''' 
+
     def __init__(self, screen_name, n, retweets, replies):
+        '''
+        Initializes the tweepy response containing data from last N tweets from User userid
+        @param  {String}        screen_name :   The user's twitter name
+        @param  {Int}           n           :   Max number of tweets to return
+        @param  {Bool}          retweets    :   Include retweets
+        @param  {Bool}          replies     :   Exclude replies 
+        ''' 
         # Initialize Auth
         self.auth           = tweepy.OAuthHandler(consumer_key, consumer_key_secret)
         self.auth.set_access_token(access_token, access_token_secret)
@@ -27,23 +28,25 @@ class Tweepy:
         self.banner         = self.user_response.profile_background_image_url_https
         self.tweets         = {'tweets': {}}
     
-    '''
-    Returns user's data
-    @return {dict}          self.tweets 
-    ''' 
     def get_data(self):
+        '''
+        Returns user's data
+        @return {dict}          self.tweets 
+        ''' 
         
         self.tweets['pinned']   = self.response[0].user.description
         self.tweets['image']    = self.image
         self.tweets['banner']   = self.banner
 
         for tweets in self.response:
-            self.tweets['tweets'][tweets.id_str] = {'text': tweets.full_text, 'time':tweets.created_at, 'language':tweets.lang}
+            # Require tweets written in English containing at least 15 words
+            if len(tweets.full_text.split(' ')) > 20 and tweets.lang == 'en':
+                self.tweets['tweets'][tweets.id_str] = {'text': tweets.full_text, 'time':tweets.created_at, 'language':tweets.lang}
 
         return self.tweets
     
 
 if __name__ == "__main__":
-    tweepy = Tweepy('LarckeningXuruo', 1, True, False)
+    tweepy = Tweepy('elonmusk', 30, True, False)
     a = tweepy.get_data()
     print(a)
