@@ -5,6 +5,7 @@
 
 from api.botapi import Bot
 from api.twitterapi import Tweepy
+from api.google_nlp import NLP
 
 from flask import Flask, jsonify, request
 
@@ -16,12 +17,14 @@ def index():
     username = request.args.get('username')
 
     bot     = Bot()
-    tweepy  = Tweepy(username, 10, True, False)
+    tweepy  = Tweepy(username, 200, True, False)
+    nlp     = NLP(tweepy.get_data())
 
     json['botometer']   = bot.isBot(username)
     json['tweepy']      = tweepy.get_data()
+    json['googlenlp']   = nlp.get_response()
 
     print(username, json)
     return json
 
-app.run(host='0.0.0.0', port=3000)
+app.run(host='0.0.0.0', port=8000)
