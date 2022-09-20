@@ -1,1 +1,1 @@
-__all__ = ['api_keys', 'botapi', 'twitterapi']
+__all__ = ['api_keys', 'botapi', 'twitterapi', 'google_nlp']
