@@ -1,5 +1,7 @@
 import tweepy
 import datetime 
+from google.cloud import language_v1
+
 
 # Keys 
 consumer_key = "5gmn7aKPH2Auig4IzlfbJFiAL"
@@ -35,7 +37,7 @@ def get_tweets(username):
    tmp.append(j)
 
   # Printing the tweets
-  print(tmp)
+  # print(tmp)
 
 #
 # Driver code
@@ -46,7 +48,20 @@ if __name__ == '__main__':
  while True:
     val = input("Enter the username: ")
     store_usernames = []
-    tmp.append(val)
+    store_usernames.append(val)
     get_tweets(val)
+# Instantiates a client
+    client = language_v1.LanguageServiceClient()
+# The text to analyze
+    text = "Hello, world!"
+    document = language_v1.Document(
+    content=get_tweets(val), type_=language_v1.Document.Type.PLAIN_TEXT
+    )
+# Detects the sentiment of the text
+    sentiment = client.analyze_sentiment(
+    request={"document": document}
+   ).document_sentiment
+# print("Text: {}".format(text))
+print("Sentiment: {}, {}".format(sentiment.score, sentiment.magnitude))
 
 
