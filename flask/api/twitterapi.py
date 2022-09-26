@@ -1,9 +1,7 @@
 import tweepy
 from api.api_keys import *
 
-
 class Tweepy:
-
     def __init__(self, screen_name, n, retweets, replies):
         '''
         Initializes the tweepy response containing data from last N tweets from User userid
@@ -38,11 +36,13 @@ class Tweepy:
         self.tweets['image']    = self.image
         self.tweets['banner']   = self.banner
 
+        self.count = 0
         for tweets in self.response:
             # Require tweets written in English containing at least 15 words
             if len(tweets.full_text.split(' ')) > 20 and tweets.lang == 'en':
                 self.tweets['tweets'][tweets.id_str] = {'text': tweets.full_text, 'time':tweets.created_at, 'language':tweets.lang}
-
+                self.count += 1
+            self.tweets['num_tweets'] = self.count
         return self.tweets
     
 
