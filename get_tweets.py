@@ -4,10 +4,10 @@ from google.cloud import language_v1
 
 
 # Keys 
-consumer_key = "5gmn7aKPH2Auig4IzlfbJFiAL"
-consumer_secret = "42eLxX1cJHMiphKJ85UH8RtSm4TWpQeVBmPuDnGztQozeprwqV"
-access_key = "3487626854-WsHEpiyqitzDw3urb2a7jZ8eBCBXq6k538EaOHu"
-access_secret = "9wdcFRMtJoNW60lQDCkjJTEZmggoeY4eQv1fNHfwxG1E6"
+consumer_key = "consumer_key"
+consumer_secret = "consumer_secret"
+access_key = "access_key"
+access_secret = "access_secret"
 
 # Function to extract tweets
 def get_tweets(username):
